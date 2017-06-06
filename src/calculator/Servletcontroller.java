@@ -3,6 +3,7 @@ package calculator;
 import java.io.IOException;
 
 
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,30 +27,57 @@ import javax.servlet.http.HttpSession;
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 	throws ServletException, IOException 
 	{
-		// Create an object of BasicCalc class
-		
-		//get parameter with req.getparameter() method and 
-		
-		// set the values with set parameter into variable a, b
-		
-		// get parameter operation 
-		
-	//	switch (operation)		
+		BasicCalc det=new BasicCalc();
+		double a=Double.valueOf(req.getParameter("a"));
+		double b=Double.valueOf(req.getParameter("b"));
+		det.setA(a);
+		det.setB(b);
+		String Operation=req.getParameter("Operation");
+			
+		switch (Operation)		
 		{
-		//write switch cases for calling different method of operations
+			case "add()": 
+				c=det.add();
+				System.out.println("c");
+				break;
+			case "subtract()":
+				c=det.subtract();
+				System.out.println("c");
+				break;
+			case "multiply()":
+				c=det.multiply();
+				System.out.println("c");
+				break;
+			case "divide()":
+				c=det.divide();
+	          System.out.println("c");
+				break;
+				default:System.out.println("wrong choice");
+				break;
 		}
+		req.setAttribute("answer",c);
+
 		RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
 		rd.forward(req, resp); 
-		} 
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-	throws ServletException, IOException {
-	doGet(req, resp);
+		
 	}
+
+
+@Override
+protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+		throws ServletException, IOException {
+	doGet(req, resp);
 }
-	
 
-
-
+}		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	
